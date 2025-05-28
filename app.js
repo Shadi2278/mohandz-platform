@@ -1,4 +1,9 @@
 // Backend API for Mohandz Engineering Services Platform
+app.use(cors({
+  origin: '*', // أو عنوان الواجهة الأمامية المحدد
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
