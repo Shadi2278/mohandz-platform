@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - لوحة تحكم مهندز</title>
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Cairo Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Login CSS -->
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #f8a100;
+            --dark-blue: #003366;
+            --light-blue: #e6f0ff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-300: #dee2e6;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --white: #ffffff;
+        }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--gray-100);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+        }
+        
+        .login-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .login-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .login-header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .login-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+        
+        .form-control {
+            border-radius: 5px;
+            padding: 12px 15px;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-radius: 5px;
+            padding: 12px 15px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+            border-color: var(--dark-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 86, 179, 0.2);
+        }
+        
+        .login-footer {
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-footer a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .logo {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+        
+        .alert {
+            border-radius: 5px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="../images/logo.png" alt="مهندز" class="logo">
+                <h1>تسجيل الدخول إلى لوحة التحكم</h1>
+            </div>
+            <div class="login-body">
+                <div class="alert alert-danger" id="login-error"></div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" class="form-control" id="email" placeholder="أدخل البريد الإلكتروني" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">كلمة المرور</label>
+                        <input type="password" class="form-control" id="password" placeholder="أدخل كلمة المرور" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+                </form>
+            </div>
+            <div class="login-footer">
+                <a href="../index.html">العودة إلى الموقع الرئيسي</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Login JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const loginError = document.getElementById('login-error');
+            
+            // Check if already logged in
+            const token = localStorage.getItem('mohandz_admin_token');
+            if (token) {
+                window.location.href = 'dashboard/index.html';
+            }
+            
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // For demo purposes, simulate successful login with hardcoded credentials
+                if (email === 'admin@mohandz.com' && password === 'Admin@123') {
+                    localStorage.setItem('mohandz_admin_token', 'mock_token_12345');
+                    window.location.href = 'dashboard/index.html';
+                } else {
+                    loginError.textContent = 'بيانات الدخول غير صحيحة. الرجاء استخدام admin@mohandz.com / Admin@123';
+                    loginError.style.display = 'block';
+                }
+            });
+            
+            // Auto-fill credentials for demo
+            document.getElementById('email').value = 'admin@mohandz.com';
+            document.getElementById('password').value = 'Admin@123';
+        });
+    </script>
+</body>
+</html>

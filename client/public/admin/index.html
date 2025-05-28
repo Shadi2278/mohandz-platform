@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - مهندز للخدمات الهندسية</title>
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-body">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-2 col-md-3 p-0 admin-sidebar">
+                <div class="text-center py-4">
+                    <img src="../images/logo.png" alt="مهندز للخدمات الهندسية" height="60" class="mb-3">
+                    <h5 class="text-white mb-0">لوحة التحكم</h5>
+                </div>
+                <hr class="bg-light opacity-25">
+                <div class="px-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="index.html">
+                                <i class="fas fa-tachometer-alt ml-2"></i>
+                                لوحة المعلومات
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.html">
+                                <i class="fas fa-clipboard-list ml-2"></i>
+                                إدارة الطلبات
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">
+                                <i class="fas fa-cogs ml-2"></i>
+                                إدارة الخدمات
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="users.html">
+                                <i class="fas fa-users ml-2"></i>
+                                إدارة المستخدمين
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="projects.html">
+                                <i class="fas fa-project-diagram ml-2"></i>
+                                إدارة المشاريع
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="payments.html">
+                                <i class="fas fa-money-bill-wave ml-2"></i>
+                                إدارة المدفوعات
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reports.html">
+                                <i class="fas fa-chart-bar ml-2"></i>
+                                التقارير والإحصائيات
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="messages.html">
+                                <i class="fas fa-envelope ml-2"></i>
+                                الرسائل
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="settings.html">
+                                <i class="fas fa-cog ml-2"></i>
+                                الإعدادات
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="bg-light opacity-25">
+                <div class="px-3 mb-3">
+                    <a href="../index.html" class="nav-link text-light">
+                        <i class="fas fa-sign-out-alt ml-2"></i>
+                        العودة للموقع
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-lg-10 col-md-9 ms-auto admin-content">
+                <!-- Header -->
+                <header class="admin-header py-3">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <button id="sidebarToggle" class="btn btn-link d-md-none">
+                                <i class="fas fa-bars"></i>
+                            </button>
+                            <h4 class="mb-0">لوحة المعلومات</h4>
+                        </div>
+                        <div class="col-auto">
+                            <div class="d-flex align-items-center">
+                                <div class="dropdown me-3">
+                                    <a href="#" class="position-relative" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-bell fa-lg"></i>
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            3
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                                        <li><h6 class="dropdown-header">الإشعارات</h6></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item admin-notification unread" href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="fas fa-clipboard-list text-primary"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <p class="mb-0">تم إضافة طلب جديد</p>
+                                                        <small class="text-muted">منذ 5 دقائق</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item admin-notification unread" href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="fas fa-user-plus text-success"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <p class="mb-0">تم تسجيل مستخدم جديد</p>
+                                                        <small class="text-muted">منذ 10 دقائق</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item admin-notification unread" href="#">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="fas fa-money-bill-wave text-warning"></i>
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <p class="mb-0">تم استلام دفعة جديدة</p>
+                                                        <small class="text-muted">منذ 30 دقيقة</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item text-center" href="#">عرض جميع الإشعارات</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown">
+                                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="../images/admin-avatar.jpg" alt="Admin" width="32" height="32" class="rounded-circle me-2">
+                                        <span>أحمد محمد</span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                        <li><a class="dropdown-item" href="#">الملف الشخصي</a></li>
+                                        <li><a class="dropdown-item" href="#">الإعدادات</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="../index.html">تسجيل الخروج</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                
+                <!-- Dashboard Content -->
+                <div class="admin-dashboard py-4">
+                    <!-- Stats Cards -->
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="admin-stats-card">
+                                <div class="admin-stats-icon">
+                                    <i class="fas fa-clipboard-list"></i>
+                                </div>
+                                <div class="admin-stats-info">
+                                    <h6 class="admin-stats-title">إجمالي الطلبات</h6>
+                                    <h3 class="admin-stats-value">248</h3>
+                                    <p class="text-success mb-0"><i class="fas fa-arrow-up"></i> 12% منذ الشهر الماضي</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="admin-stats-card">
+                                <div class="admin-stats-icon" style="background-color: rgba(40, 167, 69, 0.1); color: #28a745;">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="admin-stats-info">
+                                    <h6 class="admin-stats-title">إجمالي المستخدمين</h6>
+                                    <h3 class="admin-stats-value">1,254</h3>
+                                    <p class="text-success mb-0"><i class="fas fa-arrow-up"></i> 8% منذ الشهر الماضي</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="admin-stats-card">
+                                <div class="admin-stats-icon" style="background-color: rgba(255, 193, 7, 0.1); color: #ffc107;">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="admin-stats-info">
+                                    <h6 class="admin-stats-title">إجمالي الإيرادات</h6>
+                                    <h3 class="admin-stats-value">125,400 ر.س</h3>
+                                    <p class="text-success mb-0"><i class="fas fa-arrow-up"></i> 15% منذ الشهر الماضي</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="admin-stats-card">
+                                <div class="admin-stats-icon" style="background-color: rgba(220, 53, 69, 0.1); color: #dc3545;">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <div class="admin-stats-info">
+                                    <h6 class="admin-stats-title">المشاريع المكتملة</h6>
+                                    <h3 class="admin-stats-value">185</h3>
+                                    <p class="text-success mb-0"><i class="fas fa-arrow-up"></i> 10% منذ الشهر الماضي</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Charts -->
+                    <div class="row mt-4">
+                        <div class="col-lg-8">
+                            <div class="admin-chart-container">
+                                <h5 class="admin-chart-title">تحليل الطلبات</h5>
+                                <canvas id="ordersChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="admin-chart-container">
+                                <h5 class="admin-chart-title">توزيع الخدمات</h5>
+                                <canvas id="servicesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Orders -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="admin-card">
+                                <div class="admin-card-header">
+                                    <h5 class="mb-0">أحدث الطلبات</h5>
+                                </div>
+                                <div class="admin-card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>رقم الطلب</th>
+                                                    <th>العميل</th>
+                                                    <th>الخدمة</th>
+                                                    <th>التاريخ</th>
+                                                    <th>المبلغ</th>
+                                                    <th>الحالة</th>
+                                                    <th>الإجراءات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>#ORD-001</td>
+                                                    <td>محمد أحمد</td>
+                                                    <td>تصميم معماري</td>
+                                                    <td>2025-05-25</td>
+                                                    <td>3,500 ر.س</td>
+                                                    <td><span class="admin-badge admin-badge-warning">قيد التنفيذ</span></td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>#ORD-002</td>
+                                                    <td>سارة خالد</td>
+                                                    <td>تصميم إنشائي</td>
+                                                    <td>2025-05-24</td>
+                                                    <td>4,200 ر.س</td>
+                                                    <td><span class="admin-badge admin-badge-primary">قيد المراجعة</span></td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>#ORD-003</td>
+                                                    <td>عبدالله محمد</td>
+                                                    <td>رفع مساحي</td>
+                                                    <td>2025-05-23</td>
+                                                    <td>2,800 ر.س</td>
+                                                    <td><span class="admin-badge admin-badge-success">مكتمل</span></td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>#ORD-004</td>
+                                                    <td>نورة سعد</td>
+                                                    <td>تصميم طريق</td>
+                                                    <td>2025-05-22</td>
+                                                    <td>5,600 ر.س</td>
+                                                    <td><span class="admin-badge admin-badge-warning">قيد التنفيذ</span></td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>#ORD-005</td>
+                                                    <td>فهد عبدالعزيز</td>
+                                                    <td>تصميم شامل</td>
+                                                    <td>2025-05-21</td>
+                                                    <td>7,800 ر.س</td>
+                                                    <td><span class="admin-badge admin-badge-danger">ملغي</span></td>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a href="#" class="btn btn-sm btn-primary"><i class="fas fa-eye"></i></a>
+                                                            <a href="#" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <a href="orders.html" class="btn btn-primary">عرض جميع الطلبات</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Users and Messages -->
+                    <div class="row mt-4">
+                        <div class="col-lg-6">
+                            <div class="admin-card h-100">
+                                <div class="admin-card-header">
+                                    <h5 class="mb-0">أحدث المستخدمين</h5>
+                                </div>
+                                <div class="admin-card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../images/user1.jpg" alt="User" class="rounded-circle me-3" width="40" height="40">
+                                                <div>
+                                                    <h6 class="mb-0">أحمد محمد</h6>
+                                                    <small class="text-muted">ahmed@example.com</small>
+                                                </div>
+                                            </div>
+                                            <span class="admin-badge admin-badge-primary">عميل</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../images/user2.jpg" alt="User" class="rounded-circle me-3" width="40" height="40">
+                                                <div>
+                                                    <h6 class="mb-0">سارة خالد</h6>
+                                                    <small class="text-muted">sarah@example.com</small>
+                                                </div>
+                                            </div>
+                                            <span class="admin-badge admin-badge-success">مهندس</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../images/user3.jpg" alt="User" class="rounded-circle me-3" width="40" height="40">
+                                                <div>
+                                                    <h6 class="mb-0">عبدالله محمد</h6>
+                                                    <small class="text-muted">abdullah@example.com</small>
+                                                </div>
+                                            </div>
+                                            <span class="admin-badge admin-badge-primary">عميل</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../images/user4.jpg" alt="User" class="rounded-circle me-3" width="40" height="40">
+                                                <div>
+                                                    <h6 class="mb-0">نورة سعد</h6>
+                                                    <small class="text-muted">noura@example.com</small>
+                                                </div>
+                                            </div>
+                                            <span class="admin-badge admin-badge-primary">عميل</span>
+                                        </li>
+                                    </ul>
+                                    <div class="text-center mt-3">
+                                        <a href="users.html" class="btn btn-primary">عرض جميع المستخدمين</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="admin-card h-100">
+                                <div class="admin-card-header">
+                                    <h5 class="mb-0">أحدث الرسائل</h5>
+                                </div>
+                                <div class="admin-card-body">
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../images/user1.jpg" alt="User" class="rounded-circle me-3" width="40" height="40">
+                                                <div class="flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h6 class="mb-0">أحمد محمد</h6>
+                                                        <small class="text-muted">منذ 10 دقائق</small>
+                                                    </div>
+                                                    <p class="mb-0 text-truncate" style="max-width: 300px;">أرغب في الاستفسار عن خدمة التصميم المعماري وتكلفتها...</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../images/user2.jpg" alt="User" class="rounded-circle me-3" width="40" height="40">
+                                                <div class="flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h6 class="mb-0">سارة خالد</h6>
+                                                        <small class="text-muted">منذ 30 دقيقة</small>
+                                                    </div>
+                                                    <p class="mb-0 text-truncate" style="max-width: 300px;">شكراً لكم على الخدمة الممتازة، أود الاستفسار عن موعد تسليم المشروع...</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../images/user3.jpg" alt="User" class="rounded-circle me-3" width="40" height="40">
+                                                <div class="flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h6 class="mb-0">عبدالله محمد</h6>
+                                                        <small class="text-muted">منذ ساعة</small>
+                                                    </div>
+                                                    <p class="mb-0 text-truncate" style="max-width: 300px;">هل يمكنني إجراء بعض التعديلات على التصميم الإنشائي؟</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../images/user4.jpg" alt="User" class="rounded-circle me-3" width="40" height="40">
+                                                <div class="flex-grow-1">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <h6 class="mb-0">نورة سعد</h6>
+                                                        <small class="text-muted">منذ 3 ساعات</small>
+                                                    </div>
+                                                    <p class="mb-0 text-truncate" style="max-width: 300px;">أرغب في طلب خدمة تصميم طريق، هل يمكنكم تزويدي بالتفاصيل؟</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="text-center mt-3">
+                                        <a href="messages.html" class="btn btn-primary">عرض جميع الرسائل</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <footer class="admin-footer mt-4 py-3 bg-light text-center">
+                    <div class="container">
+                        <p class="mb-0">&copy; 2025 مهندز للخدمات الهندسية. جميع الحقوق محفوظة.</p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">إشعار</strong>
+                <small>الآن</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                تم تحديث البيانات بنجاح
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- DataTables JS -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../js/script.js"></script>
+</body>
+</html>

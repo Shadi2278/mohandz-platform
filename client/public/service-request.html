@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب خدمة - مهندز للخدمات الهندسية</title>
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Cairo Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .service-request-section {
+            padding: 120px 0 80px;
+        }
+        .service-request-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        .service-icon-large {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .form-control, .form-select {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--gray-300);
+            font-family: 'Cairo', sans-serif;
+        }
+        .form-control:focus, .form-select:focus {
+            box-shadow: none;
+            border-color: var(--primary-color);
+        }
+        .btn-submit {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .service-details {
+            background-color: var(--light-blue);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .service-details h4 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .service-details p {
+            color: var(--gray-700);
+            margin-bottom: 20px;
+        }
+        .service-details .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0;
+        }
+        .service-details .features {
+            margin-top: 20px;
+        }
+        .service-details .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .service-details .feature-icon {
+            color: var(--primary-color);
+            margin-left: 10px;
+        }
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .step {
+            text-align: center;
+            position: relative;
+            flex: 1;
+        }
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 60%;
+            width: 80%;
+            height: 2px;
+            background-color: var(--gray-300);
+        }
+        .step.active:not(:last-child)::after {
+            background-color: var(--primary-color);
+        }
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background-color: var(--gray-300);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 600;
+        }
+        .step.active .step-number {
+            background-color: var(--primary-color);
+        }
+        .step-title {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .step.active .step-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="مهندز للخدمات الهندسية" height="60">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">الرئيسية</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                خدماتنا
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                <li><a class="dropdown-item" href="index.html#architectural">التصاميم المعمارية والإنشائية</a></li>
+                                <li><a class="dropdown-item" href="index.html#infrastructure">خدمات الطرق والبنية التحتية</a></li>
+                                <li><a class="dropdown-item" href="index.html#surveying">خدمات الموقع المساحية</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#projects">مشاريعنا</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#about">من نحن</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#contact">اتصل بنا</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex ms-lg-3">
+                        <a href="login.html" class="btn btn-outline-primary me-2">تسجيل الدخول</a>
+                        <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Service Request Section -->
+    <section class="service-request-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">طلب تصميم معماري</h2>
+                <p class="section-description">يرجى ملء النموذج التالي لطلب خدمة التصميم المعماري</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <div class="card service-request-card p-4">
+                        <!-- Steps -->
+                        <div class="steps-container mb-4">
+                            <div class="step active">
+                                <div class="step-number">1</div>
+                                <div class="step-title">معلومات المشروع</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-title">معلومات التواصل</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-title">المراجعة والدفع</div>
+                            </div>
+                        </div>
+
+                        <form>
+                            <div class="mb-4">
+                                <h4 class="mb-3">معلومات المشروع</h4>
+                                
+                                <div class="mb-3">
+                                    <label for="projectTitle" class="form-label">عنوان المشروع</label>
+                                    <input type="text" class="form-control" id="projectTitle" placeholder="أدخل عنوان المشروع">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="projectType" class="form-label">نوع المبنى</label>
+                                    <select class="form-select" id="projectType">
+                                        <option selected disabled>اختر نوع المبنى</option>
+                                        <option>فيلا سكنية</option>
+                                        <option>عمارة سكنية</option>
+                                        <option>مبنى تجاري</option>
+                                        <option>مجمع سكني</option>
+                                        <option>مستودع</option>
+                                        <option>أخرى</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="landArea" class="form-label">مساحة الأرض (متر مربع)</label>
+                                    <input type="number" class="form-control" id="landArea" placeholder="أدخل مساحة الأرض">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="buildingArea" class="form-label">المساحة المطلوب بناؤها (متر مربع)</label>
+                                    <input type="number" class="form-control" id="buildingArea" placeholder="أدخل المساحة المطلوب بناؤها">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="floors" class="form-label">عدد الطوابق</label>
+                                    <select class="form-select" id="floors">
+                                        <option selected disabled>اختر عدد الطوابق</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>أكثر من 5</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="location" class="form-label">موقع المشروع</label>
+                                    <input type="text" class="form-control" id="location" placeholder="أدخل موقع المشروع (المدينة/الحي)">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="requirements" class="form-label">متطلبات خاصة</label>
+                                    <textarea class="form-control" id="requirements" rows="4" placeholder="أدخل أي متطلبات خاصة للمشروع"></textarea>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="attachments" class="form-label">إرفاق ملفات (اختياري)</label>
+                                    <input type="file" class="form-control" id="attachments" multiple>
+                                    <div class="form-text">يمكنك إرفاق صك الملكية، كروكي الأرض، أو أي مستندات أخرى ذات صلة.</div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <h4 class="mb-3">معلومات التواصل</h4>
+                                
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">الاسم الكامل</label>
+                                    <input type="text" class="form-control" id="name" placeholder="أدخل الاسم الكامل">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                                    <input type="email" class="form-control" id="email" placeholder="أدخل البريد الإلكتروني">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">رقم الجوال</label>
+                                    <input type="tel" class="form-control" id="phone" placeholder="أدخل رقم الجوال">
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="preferredContact" class="form-label">طريقة التواصل المفضلة</label>
+                                    <select class="form-select" id="preferredContact">
+                                        <option selected disabled>اختر طريقة التواصل المفضلة</option>
+                                        <option>الهاتف</option>
+                                        <option>البريد الإلكتروني</option>
+                                        <option>واتساب</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck">
+                                    <label class="form-check-label" for="termsCheck">
+                                        أوافق على <a href="#">الشروط والأحكام</a> وسياسة الخصوصية
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="button" class="btn btn-outline-primary me-md-2">رجوع</button>
+                                <button type="submit" class="btn btn-primary btn-submit">متابعة</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="service-details">
+                        <div class="text-center mb-4">
+                            <div class="service-icon-large">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h4>تصميم معماري</h4>
+                        </div>
+                        <p>يا طويل العمر، نسوي لك تصميم معماري ما له مثيل للبيوت والعمائر والمجمعات. من البداية للنهاية، نشتغل على كل التفاصيل بدقة عالية ونراعي ذوقك وطلباتك. والله ما نخلص إلا وانت راضي تمام الرضا عن التصميم.</p>
+                        <div class="price-container text-center">
+                            <p class="mb-1">تبدأ الأسعار من</p>
+                            <p class="price">3,500 ريال</p>
+                        </div>
+                        <div class="features">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>تصميم معماري كامل</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>مخططات تنفيذية</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>واجهات ثلاثية الأبعاد</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>تعديلات مجانية</div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div>دعم فني مستمر</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-4 mb-4">
+                        <h5 class="mb-3">تحتاج مساعدة؟</h5>
+                        <p>يمكنك التواصل معنا مباشرة للاستفسار عن الخدمة أو طلب المساعدة في ملء النموذج.</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">+966 12 345 6789</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">info@mohandz.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <img src="images/logo.png" alt="مهندز" height="60" class="mb-4">
+                    <p class="text-white-50">منصة مهندز هي منصة متخصصة في تقديم الخدمات الهندسية الاحترافية في مجالات التصميم المعماري والإنشائي، وخدمات الطرق والبنية التحتية، وخدمات الموقع المساحية.</p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="social-link me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link me-2"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>روابط سريعة</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="index.html#services">خدماتنا</a></li>
+                        <li><a href="index.html#projects">مشاريعنا</a></li>
+                        <li><a href="index.html#about">من نحن</a></li>
+                        <li><a href="index.html#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>خدماتنا</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="index.html#architectural">التصاميم المعمارية والإنشائية</a></li>
+                        <li><a href="index.html#infrastructure">خدمات الطرق والبنية التحتية</a></li>
+                        <li><a href="index.html#surveying">خدمات الموقع المساحية</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>اتصل بنا</h5>
+                    <ul class="list-unstyled footer-contact">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone-alt me-2"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@mohandz.com</li>
+                        <li><i class="fas fa-clock me-2"></i> الأحد - الخميس: 9:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-white-50">&copy; 2025 منصة مهندز. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">سياسة الخصوصية</a></li>
+                        <li class="list-inline-item"><a href="#">الشروط والأحكام</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        // Back to Top Button
+        document.addEventListener("DOMContentLoaded", function() {
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('active');
+                } else {
+                    backToTopButton.classList.remove('active');
+                }
+                
+                // Navbar Scroll
+                const navbar = document.querySelector('.navbar');
+                if (window.pageYOffset > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

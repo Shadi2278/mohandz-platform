@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهندز للخدمات الهندسية - منصة متخصصة في الخدمات الهندسية الاحترافية</title>
+    <!-- Bootstrap RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Cairo Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Enhanced Style CSS -->
+    <link rel="stylesheet" href="css/enhanced-style.css">
+    <!-- Intro Animation CSS -->
+    <link rel="stylesheet" href="css/intro.css">
+</head>
+<body>
+    <!-- Intro Animation (First Visit Only) -->
+    <div id="intro-animation" class="intro-container">
+        <div class="intro-content">
+            <div class="intro-logo">
+                <img src="images/logo.png" alt="مهندز للخدمات الهندسية" class="intro-logo-img">
+            </div>
+            <div class="intro-elements">
+                <div class="intro-element compass">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <div class="intro-element ruler">
+                    <i class="fas fa-ruler-combined"></i>
+                </div>
+                <div class="intro-element pencil">
+                    <i class="fas fa-pencil-ruler"></i>
+                </div>
+                <div class="intro-element calculator">
+                    <i class="fas fa-calculator"></i>
+                </div>
+            </div>
+            <div class="intro-tagline">
+                <h2>خدمات هندسية احترافية</h2>
+                <p>نبني المستقبل بأيدٍ سعودية</p>
+            </div>
+            <div class="intro-loader">
+                <div class="intro-loader-bar"></div>
+            </div>
+            <div class="intro-enter">
+                <button id="enter-site" class="btn btn-primary">الدخول إلى الموقع</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/logo.png" alt="مهندز للخدمات الهندسية" height="60">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#home">الرئيسية</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                خدماتنا
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                                <li><a class="dropdown-item" href="#architectural">التصاميم المعمارية والإنشائية</a></li>
+                                <li><a class="dropdown-item" href="#infrastructure">خدمات الطرق والبنية التحتية</a></li>
+                                <li><a class="dropdown-item" href="#surveying">خدمات الموقع المساحية</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#projects">مشاريعنا</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">من نحن</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">اتصل بنا</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex ms-lg-3">
+                        <a href="login.html" class="btn btn-outline-primary me-2">تسجيل الدخول</a>
+                        <a href="register.html" class="btn btn-primary">إنشاء حساب</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="animate-fadeInUp">خدمات هندسية احترافية لمشاريعك</h1>
+                    <p class="animate-fadeInUp">منصة مهندز توفر لك خدمات هندسية متكاملة بأعلى معايير الجودة والاحترافية. نقدم حلولاً هندسية مبتكرة تلبي احتياجاتك وتتجاوز توقعاتك.</p>
+                    <div class="d-flex gap-3 animate-fadeInUp">
+                        <a href="#services" class="btn btn-primary">طلب خدمة</a>
+                        <a href="#services" class="btn btn-outline-primary">استكشف خدماتنا</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="images/hero.jpg" alt="خدمات هندسية" class="img-fluid rounded animate-fadeInUp">
+                </div>
+            </div>
+        </div>
+        <div class="hero-shape">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100">
+                <path fill="#ffffff" fill-opacity="1" d="M0,64L80,58.7C160,53,320,43,480,48C640,53,800,75,960,80C1120,85,1280,75,1360,69.3L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">خدماتنا</h2>
+                <p class="section-description">نقدم مجموعة متكاملة من الخدمات الهندسية الاحترافية لتلبية احتياجات مشاريعك</p>
+            </div>
+
+            <!-- Architectural Services -->
+            <div id="architectural" class="service-category">
+                <h3 class="category-title">التصاميم المعمارية والإنشائية</h3>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-home fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم معماري</h4>
+                            <p class="service-description">يا طويل العمر، نسوي لك تصميم معماري ما له مثيل للبيوت والعمائر والمجمعات. من البداية للنهاية، نشتغل على كل التفاصيل بدقة عالية ونراعي ذوقك وطلباتك. والله ما نخلص إلا وانت راضي تمام الرضا عن التصميم.</p>
+                            <a href="service-request-architectural.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-building fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم إنشائي</h4>
+                            <p class="service-description">يالربع، التصميم الإنشائي عندنا ما يعلى عليه. نحسب كل شي بالملي من الأساسات للسقف، ونضمن لك بيت يصمد للزلازل والعواصف. نستخدم أحدث البرامج الهندسية ونطبق المعايير العالمية عشان نضمن لك بنيان قوي ومتين يعيش لأجيال.</p>
+                            <a href="service-request-structural.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-plug fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم سباكة وكهرباء وتكييف MEP</h4>
+                            <p class="service-description">والله العظيم نسوي لك تصميم للسباكة والكهرباء والتكييف ما فيه أي مشاكل. نحط لك كل الأنابيب والأسلاك بمكانها الصحيح، ونحسب لك الأحمال بدقة عشان ما تواجه أي مشكلة مستقبلاً. وكل هذا بأسعار معقولة ترضيك.</p>
+                            <a href="service-request-mep.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-drafting-compass fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم شامل (معماري-انشائي)</h4>
+                            <p class="service-description">يا زين الطلب! نسوي لك تصميم شامل متكامل من الألف للياء. من المعماري للإنشائي للكهرباء والسباكة، كل شي بمكان واحد وبتنسيق تام. نوفر عليك الوقت والجهد والفلوس، ونسلمك مشروع جاهز للتنفيذ بدون أي تعديلات.</p>
+                            <a href="service-request-comprehensive.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infrastructure Services -->
+            <div id="infrastructure" class="service-category">
+                <h3 class="category-title">خدمات الطرق والبنية التحتية</h3>
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-road fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم طريق</h4>
+                            <p class="service-description">يا طيب، نصمم لك الطرق والشوارع بأعلى المواصفات. من الدراسة المرورية للتصميم الهندسي للتنفيذ، نشتغل على كل التفاصيل. نراعي الانحدارات والمنعطفات والسرعات، ونضمن لك طريق آمن وسهل ويخدم لسنوات طويلة.</p>
+                            <a href="service-request-road.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-network-wired fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم شبكات (مياه-كهرباء-صرف-سيول)</h4>
+                            <p class="service-description">والله نسوي لك شبكات المياه والكهرباء والصرف بطريقة محترفة. نحسب لك الأقطار والميول والضغوط، ونختار لك أفضل المواد. نصمم لك شبكة متكاملة تغطي كل المنطقة وتخدم كل البيوت والمنشآت بكفاءة عالية.</p>
+                            <a href="service-request-networks.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-gas-pump fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم مدخل ومخرج محطة وقود</h4>
+                            <p class="service-description">يالحبيب، نصمم لك مداخل ومخارج محطات الوقود بطريقة تضمن سلامة الحركة المرورية. نراعي حجم المركبات وكثافة الحركة، ونصمم لك محطة سهلة الدخول والخروج وآمنة للجميع. ونطبق كل اشتراطات الدفاع المدني والبلدية.</p>
+                            <a href="service-request.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-traffic-light fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم مخطط السلامة المرورية</h4>
+                            <p class="service-description">يا بعد حيي، السلامة المرورية ما نتهاون فيها أبداً. نصمم لك مخططات السلامة بدقة عالية، ونحدد مواقع الإشارات والعلامات والحواجز. نراعي سلامة المشاة والسيارات، ونضمن لك طرق آمنة خالية من الحوادث بإذن الله.</p>
+                            <a href="service-request.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-water fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم عبارات السيول</h4>
+                            <p class="service-description">يا الغالي، نصمم لك عبارات السيول بطريقة تضمن تصريف المياه بكفاءة. نحسب لك كميات المياه والتدفقات، ونصمم لك عبارات بأحجام مناسبة. نضمن لك عبارات تصمد للسيول الكبيرة وتحمي الطرق والمنشآت من الانجراف.</p>
+                            <a href="service-request-culverts.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-archway fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب تصميم جسور</h4>
+                            <p class="service-description">يا زين الطلب! نصمم لك الجسور والمعابر بأعلى معايير السلامة. من الدراسة الجيولوجية للتصميم الإنشائي للتنفيذ، نشتغل على كل التفاصيل. نصمم لك جسور قوية ومتينة تتحمل أثقل الأحمال وتدوم لعشرات السنين.</p>
+                            <a href="service-request-bridges.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Surveying Services -->
+            <div id="surveying" class="service-category">
+                <h3 class="category-title">خدمات الموقع المساحية</h3>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-map-marked-alt fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب رفع مساحي للأراضي</h4>
+                            <p class="service-description">يا طويل العمر، نسوي لك رفع مساحي دقيق لقطعة الأرض. نحدد لك الإحداثيات والمساحات والارتفاعات بدقة عالية. نستخدم أحدث الأجهزة المساحية ونعطيك خريطة مفصلة توضح كل تفاصيل الأرض، من الحدود للمناسيب للعوائق الموجودة.</p>
+                            <a href="service-request-survey.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-mountain fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب رفع مساحي لطريق غير ممهد</h4>
+                            <p class="service-description">يالحبيب، نسوي لك رفع مساحي للطرق غير الممهدة بدقة عالية. نحدد لك المسارات والمناسيب والميول، ونعطيك خريطة مفصلة تساعدك في تصميم وتنفيذ الطريق. نشتغل في كل الظروف ونغطي مساحات كبيرة بوقت قياسي.</p>
+                            <a href="service-request-survey.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-road fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب رفع مساحي لطريق قائم</h4>
+                            <p class="service-description">يا الغالي، نسوي لك رفع مساحي للطرق القائمة بكل احترافية. نحدد لك العناصر والمنشآت الموجودة، من الأرصفة للإنارة للخدمات. نعطيك خريطة مفصلة توضح الوضع الحالي للطريق، وتساعدك في تخطيط أي تطوير أو توسعة.</p>
+                            <a href="service-request-survey.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4">
+                        <div class="card service-card h-100 p-4">
+                            <div class="service-icon">
+                                <i class="fas fa-layer-group fa-2x"></i>
+                            </div>
+                            <h4 class="service-title">طلب رفع مساحي للخدمات</h4>
+                            <p class="service-description">والله نسوي لك رفع مساحي للخدمات بدقة متناهية. نحدد لك مواقع الدهانات والمناهل والأرصفة وكل العناصر الموجودة. نستخدم أحدث التقنيات ونعطيك خريطة مفصلة توضح كل الخدمات الظاهرة والمدفونة، وتساعدك في تخطيط أي أعمال مستقبلية.</p>
+                            <a href="service-request-survey.html" class="btn btn-primary">طلب الخدمة</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">كيف نعمل</h2>
+                <p class="section-description">خطوات بسيطة للحصول على خدماتنا الهندسية الاحترافية</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="card step-card h-100 p-4 text-center">
+                        <div class="step-number">1</div>
+                        <h4 class="step-title">طلب الخدمة</h4>
+                        <p class="step-description">قم بتحديد الخدمة المطلوبة وملء نموذج الطلب مع تفاصيل المشروع</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="card step-card h-100 p-4 text-center">
+                        <div class="step-number">2</div>
+                        <h4 class="step-title">دراسة المشروع</h4>
+                        <p class="step-description">يقوم فريقنا الهندسي بدراسة المشروع وتحديد المتطلبات والتكلفة</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="card step-card h-100 p-4 text-center">
+                        <div class="step-number">3</div>
+                        <h4 class="step-title">تنفيذ العمل</h4>
+                        <p class="step-description">بعد الموافقة على العرض، يبدأ فريقنا في تنفيذ العمل وفق الجدول الزمني</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <div class="card step-card h-100 p-4 text-center">
+                        <div class="step-number">4</div>
+                        <h4 class="step-title">تسليم المشروع</h4>
+                        <p class="step-description">نقوم بتسليم المشروع النهائي مع ضمان الجودة والدعم الفني المستمر</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="#services" class="btn btn-primary">طلب خدمة الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">مشاريعنا</h2>
+                <p class="section-description">نفخر بتقديم مجموعة متميزة من المشاريع التي نفذناها بأعلى معايير الجودة</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/project1.jpg" alt="تصميم معماري لمجمع سكني">
+                            <div class="project-overlay">
+                                <a href="projects/architectural-project.html" class="btn btn-light">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="project-info p-3">
+                            <h4 class="project-title">تصميم معماري لمجمع سكني</h4>
+                            <p class="project-category">التصاميم المعمارية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/project2.jpg" alt="تصميم طريق رئيسي">
+                            <div class="project-overlay">
+                                <a href="projects/road-project.html" class="btn btn-light">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="project-info p-3">
+                            <h4 class="project-title">تصميم طريق رئيسي</h4>
+                            <p class="project-category">خدمات الطرق والبنية التحتية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/project3.jpg" alt="تصميم مبنى تجاري">
+                            <div class="project-overlay">
+                                <a href="projects/architectural-project.html" class="btn btn-light">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="project-info p-3">
+                            <h4 class="project-title">تصميم مبنى تجاري</h4>
+                            <p class="project-category">التصاميم المعمارية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/project4.jpg" alt="رفع مساحي لمنطقة سكنية">
+                            <div class="project-overlay">
+                                <a href="projects/road-project.html" class="btn btn-light">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="project-info p-3">
+                            <h4 class="project-title">رفع مساحي لمنطقة سكنية</h4>
+                            <p class="project-category">خدمات الموقع المساحية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/project5.jpg" alt="تصميم شبكات بنية تحتية">
+                            <div class="project-overlay">
+                                <a href="projects/road-project.html" class="btn btn-light">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="project-info p-3">
+                            <h4 class="project-title">تصميم شبكات بنية تحتية</h4>
+                            <p class="project-category">خدمات الطرق والبنية التحتية</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/project6.jpg" alt="تصميم جسر">
+                            <div class="project-overlay">
+                                <a href="projects/road-project.html" class="btn btn-light">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                        <div class="project-info p-3">
+                            <h4 class="project-title">تصميم جسر</h4>
+                            <p class="project-category">خدمات الطرق والبنية التحتية</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-outline-primary">عرض المزيد من المشاريع</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">من نحن</h2>
+                <p class="section-description">منصة مهندز هي منصة متخصصة في تقديم الخدمات الهندسية الاحترافية</p>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <img src="images/about.jpg" alt="فريق مهندز" class="img-fluid rounded">
+                </div>
+                <div class="col-lg-6">
+                    <h3 class="mb-4">قصتنا</h3>
+                    <p>تأسست منصة مهندز بهدف توفير خدمات هندسية احترافية بأعلى معايير الجودة. نحن فريق من المهندسين المحترفين ذوي الخبرة الواسعة في مجالات التصميم المعماري والإنشائي، وخدمات الطرق والبنية التحتية، وخدمات الموقع المساحية.</p>
+                    <p>نؤمن بأن الهندسة هي فن وعلم، ونسعى دائماً لتقديم حلول هندسية مبتكرة تلبي احتياجات عملائنا وتتجاوز توقعاتهم. نحرص على مواكبة أحدث التقنيات والمعايير العالمية في مجال الهندسة، ونطبقها في مشاريعنا لضمان أعلى مستويات الجودة والكفاءة.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card feature-card p-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="feature-icon text-primary me-3">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">الجودة العالية</h5>
+                                        <p class="mb-0">نلتزم بأعلى معايير الجودة في جميع مشاريعنا</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card feature-card p-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="feature-icon text-primary me-3">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">فريق محترف</h5>
+                                        <p class="mb-0">فريق من المهندسين ذوي الخبرة والكفاءة العالية</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card feature-card p-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="feature-icon text-primary me-3">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">الالتزام بالمواعيد</h5>
+                                        <p class="mb-0">نلتزم بتسليم المشاريع في الوقت المحدد</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card feature-card p-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="feature-icon text-primary me-3">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="mb-1">دعم مستمر</h5>
+                                        <p class="mb-0">نقدم الدعم الفني المستمر لعملائنا</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">آراء العملاء</h2>
+                <p class="section-description">ما يقوله عملاؤنا عن خدماتنا الهندسية</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card testimonial-card h-100 p-4">
+                        <div class="testimonial-rating text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text mb-4">"والله ما قصروا معي أبداً. سويت معهم تصميم معماري لفيلتي، وكان الشغل ممتاز وفوق التوقعات. الفريق محترف ومتعاون، والتسليم كان في الوقت المحدد بالضبط."</p>
+                        <div class="d-flex align-items-center testimonial-author-info">
+                            <div class="ms-3">
+                                <h5 class="mb-1">محمد السعيد</h5>
+                                <p class="mb-0 text-muted">الرياض</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card testimonial-card h-100 p-4">
+                        <div class="testimonial-rating text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text mb-4">"تعاملت مع منصة مهندز في مشروع تصميم طريق، وكانت التجربة ممتازة. الفريق الهندسي عنده خبرة كبيرة، والتصميم كان دقيق ومطابق للمواصفات. أنصح بالتعامل معهم."</p>
+                        <div class="d-flex align-items-center testimonial-author-info">
+                            <div class="ms-3">
+                                <h5 class="mb-1">فهد العتيبي</h5>
+                                <p class="mb-0 text-muted">جدة</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card testimonial-card h-100 p-4">
+                        <div class="testimonial-rating text-warning mb-3">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <p class="testimonial-text mb-4">"استعنت بخدمات مهندز للقيام برفع مساحي لأرض استثمارية، وكان العمل احترافي جداً. الدقة عالية والتقارير مفصلة، والأهم من كذا التعامل الراقي والاحترافية في كل شيء."</p>
+                        <div class="d-flex align-items-center testimonial-author-info">
+                            <div class="ms-3">
+                                <h5 class="mb-1">سلطان الدوسري</h5>
+                                <p class="mb-0 text-muted">الدمام</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">اتصل بنا</h2>
+                <p class="section-description">نحن هنا للإجابة على استفساراتك وتقديم المساعدة</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <div class="card contact-info h-100 p-4">
+                        <h4 class="mb-4">معلومات الاتصال</h4>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">العنوان</h5>
+                                <p class="mb-0">الرياض، المملكة العربية السعودية</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">الهاتف</h5>
+                                <p class="mb-0">+966 12 345 6789</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">البريد الإلكتروني</h5>
+                                <p class="mb-0">info@mohandz.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-1">ساعات العمل</h5>
+                                <p class="mb-0">الأحد - الخميس: 9:00 ص - 5:00 م</p>
+                            </div>
+                        </div>
+                        <h5 class="mb-3">تابعنا على</h5>
+                        <div class="d-flex">
+                            <a href="#" class="social-link me-2"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link me-2"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link me-2"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link me-2"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card contact-form p-4">
+                        <h4 class="mb-4">أرسل رسالة</h4>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="name" class="form-label">الاسم</label>
+                                        <input type="text" class="form-control" id="name" placeholder="أدخل اسمك">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                                        <input type="email" class="form-control" id="email" placeholder="أدخل بريدك الإلكتروني">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group">
+                                    <label for="subject" class="form-label">الموضوع</label>
+                                    <input type="text" class="form-control" id="subject" placeholder="أدخل موضوع الرسالة">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-group">
+                                    <label for="message" class="form-label">الرسالة</label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="أدخل رسالتك"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">إرسال الرسالة</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <img src="images/logo.png" alt="مهندز" height="60" class="mb-4">
+                    <p class="text-white-50">منصة مهندز هي منصة متخصصة في تقديم الخدمات الهندسية الاحترافية في مجالات التصميم المعماري والإنشائي، وخدمات الطرق والبنية التحتية، وخدمات الموقع المساحية.</p>
+                    <div class="social-links mt-4">
+                        <a href="#" class="social-link me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link me-2"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                    <h5>روابط سريعة</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#projects">مشاريعنا</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                    <h5>خدماتنا</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#architectural">التصاميم المعمارية والإنشائية</a></li>
+                        <li><a href="#infrastructure">خدمات الطرق والبنية التحتية</a></li>
+                        <li><a href="#surveying">خدمات الموقع المساحية</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5>اتصل بنا</h5>
+                    <ul class="list-unstyled footer-contact">
+                        <li><i class="fas fa-map-marker-alt me-2"></i> الرياض، المملكة العربية السعودية</li>
+                        <li><i class="fas fa-phone-alt me-2"></i> +966 12 345 6789</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@mohandz.com</li>
+                        <li><i class="fas fa-clock me-2"></i> الأحد - الخميس: 9:00 ص - 5:00 م</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-white-50">&copy; 2025 منصة مهندز. جميع الحقوق محفوظة.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">سياسة الخصوصية</a></li>
+                        <li class="list-inline-item"><a href="#">الشروط والأحكام</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Service Descriptions -->
+    <script src="js/service-descriptions.js"></script>
+    <!-- Update Descriptions JS -->
+    <script src="js/update-descriptions.js"></script>
+    <!-- Service Animations JS -->
+    <script src="js/service-animations.js"></script>
+    <!-- Intro Animation JS -->
+    <script src="js/intro.js"></script>
+    
+    <script>
+        // Preload images for faster loading
+        document.addEventListener("DOMContentLoaded", function() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const src = img.getAttribute('src');
+                if (src) {
+                    const preloadLink = document.createElement('link');
+                    preloadLink.href = src;
+                    preloadLink.rel = 'preload';
+                    preloadLink.as = 'image';
+                    document.head.appendChild(preloadLink);
+                }
+            });
+            
+            // Back to Top Button
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('active');
+                } else {
+                    backToTopButton.classList.remove('active');
+                }
+                
+                // Navbar Scroll
+                const navbar = document.querySelector('.navbar');
+                if (window.pageYOffset > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            const headerOffset = 80;
+                            const elementPosition = target.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

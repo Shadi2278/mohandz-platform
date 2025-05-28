@@ -1,0 +1,173 @@
+/* Intro Animation Styles */
+.intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dark-blue);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.intro-container.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro-content {
+    text-align: center;
+    padding: 30px;
+    max-width: 500px;
+}
+
+.intro-logo {
+    margin-bottom: 30px;
+}
+
+.intro-logo-img {
+    width: 150px;
+    height: auto;
+    animation: pulse 2s infinite;
+}
+
+.intro-elements {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.intro-element {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.5rem;
+}
+
+.intro-element.compass {
+    animation: rotateIn 1s ease forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+.intro-element.ruler {
+    animation: rotateIn 1s ease forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+}
+
+.intro-element.pencil {
+    animation: rotateIn 1s ease forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
+}
+
+.intro-element.calculator {
+    animation: rotateIn 1s ease forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
+}
+
+.intro-tagline {
+    color: var(--white);
+    margin-bottom: 30px;
+}
+
+.intro-tagline h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1s;
+    opacity: 0;
+}
+
+.intro-tagline p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
+}
+
+.intro-loader {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.intro-loader-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
+}
+
+.intro-enter {
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 1.4s;
+    opacity: 0;
+}
+
+#enter-site {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+#enter-site:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#enter-site.active {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        transform: rotate(-180deg) scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
