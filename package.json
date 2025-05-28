@@ -1,6 +1,10 @@
 {
   "name": "mohandz-platform",
   "version": "1.0.0",
+  "license": "MIT",
+"engines": {
+  "node": "16.x"
+},
   "description": "منصة مهندز للخدمات الهندسية",
   "main": "app.js",
   "scripts": {
