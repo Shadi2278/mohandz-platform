@@ -1,3 +1,8 @@
+app.use(cors({
+  origin: '*', // أو عنوان الواجهة الأمامية المحدد
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 const express = require('express');
 const path = require('path');
 const app = express();
