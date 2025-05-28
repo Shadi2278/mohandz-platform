@@ -1,191 +1,194 @@
-// API Client for Mohandz Admin Dashboard
-// Handles all API requests with authentication
+// API Client for Mohandz Platform
+const baseURL = 'https://mohandz-backend.onrender.com'; // عنوان الواجهة الخلفية على Render
 
-class ApiClient {
-  static get(url, params = {}) {
-    return this.request('GET', url, null, params);
-  }
-  
-  static post(url, data = {}, params = {}) {
-    return this.request('POST', url, data, params);
-  }
-  
-  static put(url, data = {}, params = {}) {
-    return this.request('PUT', url, data, params);
-  }
-  
-  static delete(url, params = {}) {
-    return this.request('DELETE', url, null, params);
-  }
-  
-  static async request(method, url, data = null, params = {}) {
-    try {
-      // Add query parameters to URL if provided
-      if (Object.keys(params).length > 0) {
-        const queryString = new URLSearchParams(params).toString();
-        url = `${url}${url.includes('?') ? '&' : '?'}${queryString}`;
-      }
-      
-      // Prepare request options
-      const options = {
-        method,
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      };
-      
-      // Add authentication token if available
-      const token = localStorage.getItem('token');
-      if (token) {
-        options.headers['Authorization'] = `Bearer ${token}`;
-      }
-      
-      // Add request body for POST and PUT requests
-      if (data) {
-        if (data instanceof FormData) {
-          // If data is FormData, remove Content-Type header to let browser set it
-          delete options.headers['Content-Type'];
-          options.body = data;
-        } else {
-          options.body = JSON.stringify(data);
-        }
-      }
-      
-      // Send request
-      const response = await fetch(url, options);
-      
-      // Handle JSON response
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('application/json')) {
-        const json = await response.json();
-        
-        // Add status code to response
-        json.statusCode = response.status;
-        
-        // Handle authentication errors
-        if (response.status === 401) {
-          // Clear token and redirect to login
-          localStorage.removeItem('token');
-          window.location.href = '/admin/login.html';
-          return json;
-        }
-        
-        return json;
-      }
-      
-      // Handle non-JSON responses (like file downloads)
-      if (response.ok) {
-        const blob = await response.blob();
-        return {
-          success: true,
-          data: blob,
-          statusCode: response.status
-        };
-      }
-      
-      // Handle error
-      return {
-        success: false,
-        message: 'خطأ في الاستجابة',
-        statusCode: response.status
-      };
-    } catch (error) {
-      console.error('API request error:', error);
-      return {
-        success: false,
-        message: 'خطأ في الاتصال بالخادم',
-        error: error.message
-      };
-    }
-  }
-  
-  // Special method for file uploads
-  static async uploadFile(url, formData, onProgress = null) {
-    try {
-      // Add authentication token if available
-      const token = localStorage.getItem('token');
-      
-      return new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        
-        // Setup progress event
-        if (onProgress && typeof onProgress === 'function') {
-          xhr.upload.addEventListener('progress', (event) => {
-            if (event.lengthComputable) {
-              const percentComplete = Math.round((event.loaded / event.total) * 100);
-              onProgress(percentComplete);
-            }
-          });
-        }
-        
-        // Setup completion handler
-        xhr.onload = function() {
-          if (xhr.status >= 200 && xhr.status < 300) {
-            try {
-              const response = JSON.parse(xhr.responseText);
-              resolve(response);
-            } catch (e) {
-              resolve({
-                success: true,
-                message: 'تم رفع الملف بنجاح',
-                statusCode: xhr.status
-              });
-            }
-          } else {
-            try {
-              const response = JSON.parse(xhr.responseText);
-              reject(response);
-            } catch (e) {
-              reject({
-                success: false,
-                message: 'خطأ في رفع الملف',
-                statusCode: xhr.status
-              });
-            }
-          }
-        };
-        
-        // Setup error handler
-        xhr.onerror = function() {
-          reject({
-            success: false,
-            message: 'خطأ في الاتصال بالخادم',
-            statusCode: 0
-          });
-        };
-        
-        // Open and send request
-        xhr.open('POST', url, true);
-        
-        // Add authentication header
-        if (token) {
-          xhr.setRequestHeader('Authorization', `Bearer ${token}`);
-        }
-        
-        xhr.send(formData);
-      });
-    } catch (error) {
-      console.error('File upload error:', error);
-      return {
-        success: false,
-        message: 'خطأ في رفع الملف',
-        error: error.message
-      };
-    }
-  }
-  
-  // Method to download file
-  static downloadFile(url, filename) {
-    // Create a hidden link element
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.style.display = 'none';
+// Create a base API client instance
+const apiClient = {
+  async fetchWithAuth(endpoint, options = {} ) {
+    const url = `${baseURL}${endpoint}`;
     
-    // Add to document, click, and remove
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // Get the token from localStorage
+    const token = localStorage.getItem('token');
+    
+    // Set up headers
+    const headers = {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    };
+    
+    // Add authorization header if token exists
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    // Merge options
+    const fetchOptions = {
+      ...options,
+      headers,
+    };
+    
+    try {
+      const response = await fetch(url, fetchOptions);
+      
+      // Handle unauthorized (token expired or invalid)
+      if (response.status === 401) {
+        // Clear token and redirect to login
+        localStorage.removeItem('token');
+        window.location.href = '/admin/login.html';
+        return null;
+      }
+      
+      // Parse JSON response
+      const data = await response.json();
+      
+      // If response is not ok, throw error with message from server
+      if (!response.ok) {
+        throw new Error(data.message || 'حدث خطأ في الاتصال بالخادم');
+      }
+      
+      return data;
+    } catch (error) {
+      console.error('API Error:', error);
+      throw error;
+    }
+  },
+  
+  async get(endpoint) {
+    return this.fetchWithAuth(endpoint);
+  },
+  
+  async post(endpoint, data) {
+    return this.fetchWithAuth(endpoint, {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+  
+  async put(endpoint, data) {
+    return this.fetchWithAuth(endpoint, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    });
+  },
+  
+  async delete(endpoint) {
+    return this.fetchWithAuth(endpoint, {
+      method: 'DELETE',
+    });
+  },
+  
+  // Authentication methods
+  async login(email, password) {
+    return this.post('/api/auth/login', { email, password });
+  },
+  
+  async register(userData) {
+    return this.post('/api/auth/register', userData);
+  },
+  
+  async checkAuth() {
+    return this.get('/api/auth/me');
+  },
+  
+  // Users methods
+  async getUsers() {
+    return this.get('/api/users');
+  },
+  
+  async getUser(id) {
+    return this.get(`/api/users/${id}`);
+  },
+  
+  async createUser(userData) {
+    return this.post('/api/users', userData);
+  },
+  
+  async updateUser(id, userData) {
+    return this.put(`/api/users/${id}`, userData);
+  },
+  
+  async deleteUser(id) {
+    return this.delete(`/api/users/${id}`);
+  },
+  
+  // Services methods
+  async getServices() {
+    return this.get('/api/services');
+  },
+  
+  async getService(id) {
+    return this.get(`/api/services/${id}`);
+  },
+  
+  async createService(serviceData) {
+    return this.post('/api/services', serviceData);
+  },
+  
+  async updateService(id, serviceData) {
+    return this.put(`/api/services/${id}`, serviceData);
+  },
+  
+  async deleteService(id) {
+    return this.delete(`/api/services/${id}`);
+  },
+  
+  // Orders methods
+  async getOrders() {
+    return this.get('/api/orders');
+  },
+  
+  async getOrder(id) {
+    return this.get(`/api/orders/${id}`);
+  },
+  
+  async updateOrder(id, orderData) {
+    return this.put(`/api/orders/${id}`, orderData);
+  },
+  
+  async deleteOrder(id) {
+    return this.delete(`/api/orders/${id}`);
+  },
+  
+  // Projects methods
+  async getProjects() {
+    return this.get('/api/projects');
+  },
+  
+  async getProject(id) {
+    return this.get(`/api/projects/${id}`);
+  },
+  
+  async createProject(projectData) {
+    return this.post('/api/projects', projectData);
+  },
+  
+  async updateProject(id, projectData) {
+    return this.put(`/api/projects/${id}`, projectData);
+  },
+  
+  async deleteProject(id) {
+    return this.delete(`/api/projects/${id}`);
+  },
+  
+  // Content methods
+  async getContent(type) {
+    return this.get(`/api/content/${type}`);
+  },
+  
+  async updateContent(type, contentData) {
+    return this.put(`/api/content/${type}`, contentData);
+  },
+  
+  // Settings methods
+  async getSettings() {
+    return this.get('/api/settings');
+  },
+  
+  async updateSettings(settingsData) {
+    return this.put('/api/settings', settingsData);
+  },
+  
+  // Reports methods
+  async getReports(type, period) {
+    return this.get(`/api/reports/${type}?period=${period}`);
   }
-}
+};
